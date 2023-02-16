@@ -1,0 +1,35 @@
+esphome:
+  name: esp-bedframe-lights
+
+esp8266:
+  board: nodemcuv2
+  framework:
+    version: recommended
+
+wifi:
+  ssid: !secret wifi_ssid
+  password: !secret wifi_password
+  manual_ip:
+    static_ip: 10.0.0.30
+    gateway: 10.0.0.1
+    subnet: 255.255.255.0
+
+# Enable Home Assistant API
+api:
+
+# Enable logger
+#logger:
+
+#Enable OTA
+ota:
+
+light:
+  - platform: neopixelbus
+    variant: WS2811
+    pin: GPIO0
+    num_leds: 100
+    name: "Bed Frame"
+    id: strip
+    type: BRG
+    effects:
+      - addressable_rainbow:
